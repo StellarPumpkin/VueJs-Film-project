@@ -1,9 +1,10 @@
 <template>
 <div class="col-md-3">
 <router-link :to="{name:'ThisFilm', params:{id: film.id}}">
-  <b-button v-b-popover.hover.rightop="film.overview" :title="film.original_title" >
+  <b-button  class="popoverButton btn bg-transparent"   v-b-popover.hover.rightop ="popoverConfig"  >
  <img :src="imageUrl + film.poster_path" class="img-fluid" >
-</b-button></router-link>
+</b-button>
+</router-link>
 
 
 
@@ -22,6 +23,19 @@ export default Vue.extend({
     },
   props: {
     film: Object
+  },
+  computed: {
+    popoverConfig(){
+      return{
+        html: true,
+        title: () => {
+          return '<b>' + this.film.original_title + '</b>'  + '<em>' + "(" + this.film.release_date.slice(0, 4) + ")" + '</em>';
+        },
+        content: () => {
+          return   '<em>' + this.film.overview + '</em>' + '<br>' + '<b>' + "IMDB: " + '</b>' + this.film.vote_average 
+        }
+      }
+    }
   }
 });
 </script>
@@ -30,7 +44,10 @@ export default Vue.extend({
 .img-fluid{
   max-width: 100%;
   height: auto;
-}
+};
+
+
+
 </style>
 
 

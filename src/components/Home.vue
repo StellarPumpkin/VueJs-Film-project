@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-fluid text-secondary">
     <header class="headers"><SearchBar 
     v-model="searchedFilm"
     v-on:input="searchByName"
@@ -112,6 +112,8 @@ export default {
 .headers {
   background-color: aqua
 }
+
+
 
 </style>
 
