@@ -11,6 +11,7 @@ import ThisFilm from "./components/ThisFilm.vue";
 
 
 
+
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin)
