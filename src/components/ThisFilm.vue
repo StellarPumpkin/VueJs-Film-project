@@ -27,16 +27,19 @@
             <b class="text-info">Director:</b>
             <em
               class="directorName"
-              v-for="crewMember in getDirector"
-              v-bind:key="crewMember.id"
-            >{{ crewMember.name}}</em>
+              v-for="(crewMember, index) in getDirector"
+              v-bind:key="index.id"
+            >{{crewMember.name}}
+             <span v-if="index != getDirector.length - 1">, </span>
+            </em>
+           
           </div>
 
           <div class="filmCast">
             <b class="text-info">Cast:</b>
             <em v-for="(actor,index) in getTenActors" v-bind:key="index.id">
               {{actor.name}}
-              <span v-if="index != getTenActors.length - 1">,</span>
+              <span v-if="index != getTenActors.length - 1">, </span>
             </em>
           </div>
 

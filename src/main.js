@@ -12,6 +12,7 @@ import ThisFilm from "./components/ThisFilm.vue";
 
 
 
+
 Vue.use(VueRouter);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin)
@@ -22,6 +23,7 @@ const routes = [
     name: "Home",
     component: Home
   },
+  
   {
     path: "/thisFilm/:id",
     name: "ThisFilm",

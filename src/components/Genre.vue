@@ -7,13 +7,16 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 export default Vue.extend({
-    name: "genre",
-    props:{
-        id: Number,
-        name: String
-    }
-})
+  name: "genre",
+  props: {
+    id: Number,
+    name: String
+  }
+  
+  
+  
+});
 </script>
 
