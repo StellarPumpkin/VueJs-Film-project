@@ -71,16 +71,19 @@ export default {
       genreId: "",
       perPage: 20,
       currentPage: 1,
-      total: 0
+      total: 0,
+      selectedGenre: []
     };
   },
   watch: {
     currentPage: {
       handler: function() {
-        this.callAPI()
+        this.callAPI();
       }
     }
   },
+  
+
 
   created() {
     this.callAPI();
@@ -93,7 +96,7 @@ export default {
           params: {
             api_key: "f8f289dd8d080038f73df4b74df792a6",
             sort_by: this.sortBy,
-            with_genres: this.genreId,
+            with_genres: this.selectedGenre.toString(),
             page: this.currentPage
           }
         })
@@ -132,6 +135,19 @@ export default {
         .catch(e => {
           this.errors.push(e);
         });
+    },
+    handleCheckbox(id) {
+      if (this.selectedGenre.indexOf(id) === -1) {
+        this.selectedGenre.push(id);
+      } else {
+        for (let i = 0; i < this.selectedGenre.length; i++) {
+          if (this.selectedGenre[i] === id) {
+            this.selectedGenre.splice(i, 1);
+            i--;
+          }
+        }
+      }
+      this.callAPI();
     }
   }
 };

@@ -1,9 +1,9 @@
 <template>
-    <div>
-       
-        <button v-on:click="$emit('input', id)">{{name}}</button>
-       
-    </div>
+  <div>
+    <input type="checkbox"   v-on:click="$emit('input', id)" />
+    <label>{{name}} </label>
+   
+  </div>
 </template>
 
 <script lang="ts">
