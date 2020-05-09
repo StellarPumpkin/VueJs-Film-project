@@ -13,10 +13,10 @@
 import Vue from "vue";
 export default Vue.extend({
   name: "SearchBar",
-  data(){
-      return {
-          searchInput: ""
-      }
+  data() {
+    return {
+      searchInput: ""
+    };
   }
 });
 </script>

@@ -1,12 +1,17 @@
 <template>
-  <div class="container-fluid text-secondary">
-    <header class="headers">
-      <SearchBar v-model="searchedFilm" v-on:input="searchByName"/>
-    </header>
-    <div class="container-fluid">
+  <div class="container-fluid mainContent text-secondary">
+    <div class="row headersRow justify-content-left p-3">
+      <div class="col">
+        <header class="headers">
+          <router-view></router-view>
+          <SearchBar v-model="searchedFilm" v-on:input="searchByName"/>
+        </header>
+      </div>
+    </div>
+    <div class="container-fluid mt-5">
       <div class="row justify-content-center">
-        <div class="col-md-2">
-          <select v-model="sortBy" @change="callAPI(1)">
+        <div class="headersRow col-md-2 col-2">
+          <select class="bg-transparent text-white" v-model="sortBy" @change="callAPI(1)">
             <option value="popularity.desc">Popularity</option>
             <option value="release_date.desc">Date</option>
             <option value="revenue.desc">Revenue</option>
@@ -22,7 +27,7 @@
             v-model="genreId "
           ></genre>
         </div>
-        <div class="col-md-10">
+        <div class="col-md-10 col-8">
           <div class="row justify-content-center">
             <film
               v-for="film in items"
@@ -82,8 +87,6 @@ export default {
       }
     }
   },
-  
-
 
   created() {
     this.callAPI();
@@ -110,7 +113,6 @@ export default {
     },
 
     searchByName() {
-       
       axios
         .get(
           "https://api.themoviedb.org/3/search/movie?api_key=f8f289dd8d080038f73df4b74df792a6&query=" +
@@ -122,7 +124,6 @@ export default {
         .catch(e => {
           this.errors.push(e);
         });
-       
     },
     showGenres() {
       axios
@@ -154,11 +155,11 @@ export default {
 </script>
 
 <style scoped>
-.headers {
-  background-color: aqua;
+.mainContent {
+  background-color: #2c3531;
 }
-.container-fluid {
-  background-color: #002633;
+.headersRow {
+  background-color: #116466;
 }
 </style>
 
