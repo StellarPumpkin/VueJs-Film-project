@@ -1,11 +1,17 @@
 <template>
   <div class="container">
-      <div class="row"> 
+    <div class="row">
       <b-col sm="3">
-    <b-form-textarea size="sm" rows = "2" placeholder="search" v-model="searchInput" />
-     </b-col>
-    <b-button  v-on:click="$emit('input', searchInput)">Search</b-button>
-      </div>
+        <input
+          size="sm"
+          class="bg-transparent text-white"
+          v-on:keyup.enter="$emit('input', searchInput)"
+          rows="2"
+          placeholder="Search films"
+          v-model="searchInput"
+        >
+      </b-col>
+    </div>
   </div>
 </template>
 
