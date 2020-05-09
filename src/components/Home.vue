@@ -29,24 +29,8 @@
         </div>
         <div class="col-md-10 col-8">
           <div class="row justify-content-center">
-            <film
-              v-for="film in items"
-              v-bind:key="film.id"
-              v-bind:film="film"
-              :per-page="perPage"
-              :current-page="currentPage"
-            ></film>
-
-            <b-pagination
-              v-model="currentPage"
-              :total-rows="total"
-              :per-page="perPage"
-              first-number
-              last-number
-              aria-controls="film"
-              align="center"
-              hide-prev-next="true"
-            ></b-pagination>
+            <film v-for="film in items" v-bind:key="film.id" v-bind:film="film"></film>
+            <b-pagination-nav :link-gen="linkGen" :number-of-pages="total" use-router></b-pagination-nav>
           </div>
         </div>
       </div>
@@ -74,18 +58,11 @@ export default {
       searchedFilm: "",
       sortBy: "popularity.desc",
       genreId: "",
-      perPage: 20,
-      currentPage: 1,
-      total: 0,
+
+      currentPage: this.$route.query.page,
+      total: 1,
       selectedGenre: []
     };
-  },
-  watch: {
-    currentPage: {
-      handler: function() {
-        this.callAPI();
-      }
-    }
   },
 
   created() {
@@ -105,7 +82,7 @@ export default {
         })
         .then(response => {
           this.items = response.data.results;
-          this.total = response.data.total_results;
+          this.total = response.data.total_results / 20;
         })
         .catch(e => {
           this.errors.push(e);
@@ -149,6 +126,9 @@ export default {
         }
       }
       this.callAPI();
+    },
+    linkGen(pageNum) {
+      return pageNum === 1 ? "?" : `?page=${pageNum}`;
     }
   }
 };
