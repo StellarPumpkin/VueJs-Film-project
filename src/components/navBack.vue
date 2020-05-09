@@ -1,13 +1,13 @@
 <template>
-    <nav><router-link to="/">Back</router-link></nav>
+  <button @click="$router.go(-1) 
+    "></button>
 </template>
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
 export default Vue.extend({
-    name: "navBack"
-})
+  name: "navBack"
+});
 </script>
 <style>
-
 </style>
 
