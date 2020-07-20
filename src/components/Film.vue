@@ -1,7 +1,10 @@
 <template>
-  <div class=" col-md-3 p-2">
+  <div class="col-md-3 p-2">
     <router-link class="routerButton" :to="{name:'ThisFilm', params:{id: film.id}}">
-      <b-button class="popoverButton btn bg-transparent p-0 " v-b-popover.hover.rightop="popoverConfig">
+      <b-button
+        class="popoverButton btn bg-transparent p-0"
+        v-b-popover.hover.rightop="popoverConfig"
+      >
         <b-img
           v-if="film.poster_path !== null"
           :src="this.imageUrl + film.poster_path"
@@ -13,8 +16,9 @@
       </b-button>
     </router-link>
     <div class="mobileDisplay">
-      <p class="filmInfo pr-2">{{this.film.original_title}}</p><p class="filmInfo"> ({{film.release_date.slice(0,4)}})</p>
-      </div>
+      <p class="filmInfo pr-2">{{this.film.original_title}}</p>
+      <p class="filmInfo">({{film.release_date.slice(0,4)}})</p>
+    </div>
   </div>
 </template>
 
@@ -53,12 +57,11 @@ export default Vue.extend({
             this.film.overview +
             "</em>" +
             "<br>" +
-            "<br>"+
+            "<br>" +
             "<b>" +
             "IMDB: " +
             "</b>" +
-            this.film.vote_average 
-    
+            this.film.vote_average
           );
         }
       };
@@ -81,18 +84,18 @@ export default Vue.extend({
   height: auto;
   width: 100%;
 }
-.mobileDisplay{
+.mobileDisplay {
   color: white;
 }
-.filmInfo{
-  display:inline;
+.filmInfo {
+  display: inline;
   color: rgb(191, 191, 191);
   text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
   font-family: "Raleway", sans-serif;
   font-size: 18px;
 }
-@media (min-width: 768px){
-  .mobileDisplay{
+@media (min-width: 768px) {
+  .mobileDisplay {
     display: none;
   }
 }
