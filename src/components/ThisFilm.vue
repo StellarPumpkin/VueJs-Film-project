@@ -241,10 +241,10 @@ export default Vue.extend({
     limitSimilarFilms: function() {
       return this.similarFilms.slice(0, this.limitForSimlar);
     },
-    getTitleInEnglish: function(){
-      return this.englishLanguage.filter(function(d){
+    getTitleInEnglish: function() {
+      return this.englishLanguage.filter(function(d) {
         return d.name === "English";
-      })
+      });
     }
   },
 
