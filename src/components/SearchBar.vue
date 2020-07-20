@@ -1,18 +1,17 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <b-col sm="3">
-        <input
-          size="sm"
-          class="bg-transparent text-white"
+  
+        <b-form-input
+          size="md"
+          class="searchBar "
           v-on:keyup.enter="$emit('input', searchInput)"
           rows="2"
-          placeholder="Search films"
+          placeholder="Search..."
           v-model="searchInput"
+          type="search"
+          
         >
-      </b-col>
-    </div>
-  </div>
+        </b-form-input>
+    
 </template>
 
 <script lang="ts">
