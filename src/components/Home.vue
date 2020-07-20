@@ -125,21 +125,130 @@ export default {
           }
         }
       }
-      this.callAPI();
+
+      this.$router.replace({
+        path: "/",
+        query: {
+          page: 1,
+          sort_by: this.sortBy,
+          with_genres: this.selectedGenre.join()
+        }
+      });
     },
-    linkGen(pageNum) {
-      return pageNum === 1 ? "?" : `?page=${pageNum}`;
+    selectSorting() {
+      this.$router.replace({
+        path: "/",
+        query: {
+          page: 1,
+          sort_by: this.sortBy,
+          with_genres: this.selectedGenre.join()
+        }
+      });
     }
   }
 };
 </script>
 
 <style scoped>
-.mainContent {
-  background-color: #2c3531;
+.wholePage {
+  background-color: #181b21;
+  font-family: "Raleway", sans-serif;
+  padding-bottom: 50px;
 }
-.headersRow {
-  background-color: #116466;
+/*navbar search styling*/
+.navSearch {
+  background-color: #21262e;
+  border-radius: 5px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.3);
+}
+
+.searchBar {
+  background: transparent;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid #414955;
+}
+.searchBar:hover {
+  border: 2px solid white;
+}
+input[type="search" i] {
+  background: transparent;
+  color: white;
+  text-decoration: none;
+}
+
+/*sidebar filters styling*/
+.sidebarMobileButton {
+  background-color: transparent;
+  color: rgb(191, 191, 191);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  border-radius: 4px;
+
+  border: 2px solid #566273;
+}
+
+.sidebarDesktop {
+  display: none;
+}
+
+.sidebar-sticky {
+  position: sticky;
+  height: calc(100vh - 63px);
+  padding-top: 0.5rem;
+  overflow-x: hidden;
+  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+select {
+  margin-bottom: 1em;
+  padding: 0.25em;
+  border: 0;
+  border-bottom: 2px solid currentcolor;
+  letter-spacing: 0.15em;
+  border-radius: 0;
+  background-color: transparent;
+  color: white;
+}
+
+@media (min-width: 768px) {
+  /*sidebar filters styling*/
+  .wholePage {
+    padding-bottom: 150px;
+  }
+
+  .sidebarDesktop {
+    padding-top: 60px;
+    display: flex;
+    position: fixed;
+    text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+    color: rgb(191, 191, 191);
+    left: 0;
+    bottom: 0;
+    z-index: 12; /* Behind the navbar */
+    padding-right: 0px;
+    background-color: #21262e;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  }
+  .sidebar-sticky-desktop {
+    position: sticky;
+    height: calc(100vh - 63px);
+    padding-top: 0.5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  }
+
+  select {
+    margin-bottom: 1em;
+    padding: 0.25em;
+    border: 0;
+    border-bottom: 2px solid currentcolor;
+    font-weight: bold;
+    letter-spacing: 0.15em;
+    border-radius: 0;
+  }
+  .sidebarMobile {
+    display: none;
+  }
 }
 </style>
 
