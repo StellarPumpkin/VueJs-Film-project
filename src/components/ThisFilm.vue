@@ -384,12 +384,412 @@ export default Vue.extend({
 });
 </script>
 
-
-
-
 <style scoped>
-.container-fluid {
-  background-color: #002633;
+.wholePage {
+  background-color: #181b21;
+  padding-bottom: 50px;
+}
+
+.backdrop {
+  width: 100%;
+  height: 320px;
+  background-position: center 0;
+  background-size: cover;
+  opacity: 0.8;
+  border-bottom: solid;
+  border-width: 1px;
+  box-shadow: 0 0 5px black;
+}
+.backButton {
+  position: relative;
+  left: 320px;
+  z-index: 3;
+  top: 20px;
+}
+.trailerButton {
+  position: relative;
+  margin-top: 100px;
+}
+
+.titleAndTagline {
+  margin-top: 15px;
+  line-height: 1.3;
+}
+.originalTitleTop {
+  color: white;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  font-size: 25px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
+.tagline {
+  color: rgb(241, 239, 239);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-family: "Julius Sans One", sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: bold;
+}
+.genresYearTop {
+  display: inline;
+  font-size: 15px;
+  color: white;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
+.playButton {
+  background-color: transparent;
+  border-color: transparent;
+}
+.playButton:hover {
+  background-color: transparent;
+  border-color: transparent;
+  text-shadow: 0 0 7px grey;
+}
+.playButton:focus {
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+input[type="checkbox"] {
+  opacity: 0;
+}
+.contentPanel {
+  background-color: #21262e;
+  border-radius: 5px;
+  box-shadow: 0 0 35px rgba(0, 0, 0, 0.3);
+  line-height: 1.4;
+}
+.filmPoster {
+  margin-top: 25px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.overviewDiv {
+  box-sizing: border-box;
+  margin-top: 30px;
+}
+.directorDiv {
+  margin-top: 20px;
+  margin-bottom: 7px;
+}
+.filmOverview,
+.director,
+.cast {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  color: rgb(191, 191, 191);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  display: inline;
+  font-weight: bold;
+}
+
+.directorName,
+.castName {
+  color: rgb(140, 140, 140);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  display: inline;
+  font-size: 15px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
+.mainInfoDiv {
+  overflow: hidden;
+}
+.imdbDiv {
+  position: relative;
+  top: 10px;
+}
+.imdbLogo {
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  height: 60px;
+}
+
+.imdbVote {
+  display: inline;
+  font-size: 13px;
+  color: rgb(191, 191, 191);
+
+  font-weight: bold;
+}
+
+.infoTitle {
+  display: inline;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: rgb(191, 191, 191);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  font-weight: bold;
+  margin-right: 2px;
+}
+.infoContent {
+  display: inline;
+  color: rgb(140, 140, 140);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  font-size: 13px;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+}
+.mobileBackdropImg {
+  margin-top: 30px;
+  margin-bottom: -10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.reviewsHeading {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: rgb(191, 191, 191);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.reviewName {
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+  padding: 14px;
+  background-color: rgb(51, 51, 56);
+  font-family: "Raleway", sans-serif;
+  font-size: 13px;
+  color: rgb(191, 191, 191);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.reviewName:hover {
+  color: rgb(230, 230, 230);
+}
+.reviewName::before {
+  content: " ";
+  display: inline-block;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 7px solid currentColor;
+  vertical-align: middle;
+  margin-right: 5px;
+  transform: translateY(-2px);
+}
+.reviewContent {
+  color: rgb(140, 140, 140);
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  overflow: hidden;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+}
+.similarFilmsHeader {
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+  color: rgb(191, 191, 191);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: -60px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.similarFilmsRow {
+  border-bottom: solid;
+  border-color: rgb(51, 51, 51);
+  border-width: 1px;
+  overflow: hidden;
+}
+.similarFilmPoster {
+  border-radius: 4px;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.3);
+}
+.similarFilmLink:hover {
+  text-decoration: none;
+  color: transparent;
+}
+.similarFilmTitleDate {
+  margin-top: 20px;
+}
+.similarFilmTitle {
+  display: inline;
+  font-family: "Raleway", sans-serif;
+  color: rgb(191, 191, 191);
+  font-size: 17px;
+  font-weight: bold;
+  margin-right: 5px;
+}
+.similarFilmTitle:hover {
+  color: rgb(230, 230, 230);
+}
+.similarFilmDate {
+  display: inline;
+  color: rgb(140, 140, 140);
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+}
+.similarFilmOverview {
+  color: rgb(140, 140, 140);
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+  font-weight: bold;
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+}
+
+@media (min-width: 768px) {
+  .wholePage {
+    padding-bottom: 800px;
+  }
+  .backButton {
+    position: relative;
+    z-index: 3;
+    left: 1200px;
+  }
+  .topSide {
+    position: relative;
+    z-index: 2;
+  }
+  .backdrop {
+    position: absolute;
+    top: -50px;
+    height: 650px;
+  }
+  .trailerButton {
+    position: relative;
+    margin-top: 250px;
+  }
+
+  .titleAndTagline {
+    margin-top: 76px;
+    line-height: 2;
+  }
+  .originalTitleTop {
+    font-size: 45px;
+  }
+  .tagline {
+    font-size: 25px;
+    letter-spacing: 3px;
+  }
+
+  .genresYearTop {
+    font-size: 20px;
+  }
+  .contentPanel {
+    position: relative;
+    z-index: 3;
+    top: 530px;
+    line-height: 1.7;
+  }
+  .filmPoster {
+    margin-top: 0;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  .overviewDiv {
+    margin-top: 15px;
+  }
+  .directorDiv {
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+  .filmOverview,
+  .director,
+  .cast {
+    font-size: 18px;
+  }
+
+  .directorName,
+  .castName {
+    font-size: 17px;
+  }
+  .mainInfoDiv {
+    padding-bottom: 100px;
+    border-left: solid;
+    border-width: 1px;
+    border-color: rgb(51, 51, 51);
+  }
+  .imdbDiv {
+    position: relative;
+    top: -20px;
+  }
+  .imdbLogo {
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    height: 100%;
+  }
+
+  .imdbVote {
+    display: inline;
+    font-size: 27px;
+    color: rgb(191, 191, 191);
+
+    font-weight: bold;
+  }
+
+  .infoDiv {
+    margin-bottom: 6px;
+    margin-left: 10px;
+  }
+  .infoTitle {
+    display: inline;
+    font-size: 17px;
+    margin-right: 5px;
+  }
+  .infoContent {
+    display: inline;
+    font-size: 16px;
+  }
+  .mobileBackdropImg {
+    display: none;
+  }
+  .reviewMainDiv {
+    border-left: solid;
+    border-width: 1px;
+    border-color: rgb(51, 51, 51);
+    margin-top: -96px;
+    margin-left: -1px;
+  }
+  .reviewsHeading {
+    font-size: 25px;
+    margin-bottom: 50px;
+  }
+  .reviewName {
+    display: block;
+    padding: 16px;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  .similarFilmsHeader {
+    font-size: 25px;
+    margin-top: -90px;
+    margin-bottom: 60px;
+    border-bottom: solid;
+    border-color: rgb(51, 51, 51);
+    border-width: 1px;
+    text-align: left;
+  }
+
+  .similarFilmPoster {
+    margin-left: -20px;
+  }
+  .similarFilmTitle {
+    font-size: 20px;
+    margin-right: 7px;
+    padding-left: 0px;
+  }
+  .similarFilmDate {
+    font-size: 18px;
+  }
+  .similarFilmOverview {
+    font-size: 18px;
+  }
+  .similarFilmTitleDate {
+    margin-top: 0px;
+  }
 }
 </style>
 
