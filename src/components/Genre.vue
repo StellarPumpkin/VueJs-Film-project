@@ -1,8 +1,7 @@
 <template>
   <div>
-    <input type="checkbox"   v-on:click="$emit('input', id)" />
-    <label>{{name}} </label>
-   
+    <input class=" checkBox ml-1" type="checkbox" :checked="this.selected.includes(id)" v-on:click="$emit('input', id)"/>
+    <label class="pl-2">{{name}} </label>
   </div>
 </template>
 
