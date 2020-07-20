@@ -59,10 +59,26 @@
               ></genre>
             </aside>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </b-sidebar>
+
+        <main class="filmContainer col-md-9 ml-sm-auto col-lg-10 pt-3 px-5">
+          <b-row class="filmRow justify-content-center">
+            <film v-for="film in items" v-bind:key="film.id" v-bind:film="film"></film>
+
+            <b-row>
+              <b-pagination-nav
+                class="paginationBar mt-5"
+                v-model="currentPage"
+                :link-gen="linkGen"
+                :number-of-pages="total"
+                use-router
+              ></b-pagination-nav>
+            </b-row>
+          </b-row>
+        </main>
+      </b-row>
+    </b-container>
+  </b-container>
 </template>
 
 <script>
@@ -141,7 +157,14 @@ export default {
           this.errors.push(e);
         });
     },
-    handleCheckbox(id) {
+
+    linkGen(pageNum) {
+      return `?page=${pageNum}&sort_by=${
+        this.sortBy
+      }&with_genres=${this.selectedGenre.toString()}`;
+    },
+
+    syncGenre(id) {
       if (this.selectedGenre.indexOf(id) === -1) {
         this.selectedGenre.push(id);
       } else {
