@@ -46,28 +46,36 @@
       </b-row>
     </b-container>
 
-        <div class="col-md-6">
-          <p>{{oneFilm.overview}}</p>
+    <b-container class="contentPanel">
+      <b-row class="justify-content-around pt-md-5">
+        <b-col cols="5" md="3">
+          <img class="img-fluid filmPoster" :src="imageUrl + oneFilm.poster_path">
+        </b-col>
 
-          <div class="crewMember">
-            <b class="text-info">Director:</b>
-            <em
+        <b-col cols="12" order="3" md="5" order-md="2" class="align-self-start">
+          <div class="overviewDiv">
+            <p class="filmOverview">{{oneFilm.overview}}</p>
+          </div>
+          <div class="directorDiv">
+            <p class="director">Director:</p>
+            <p
               class="directorName"
               v-for="(crewMember, index) in getDirector"
               v-bind:key="index.id"
-            >{{crewMember.name}}
-             <span v-if="index != getDirector.length - 1">, </span>
-            </em>
-           
+            >
+              {{crewMember.name}}
+              <span v-if="index != getDirector.length - 1">,</span>
+            </p>
           </div>
 
-          <div class="filmCast">
-            <b class="text-info">Cast:</b>
-            <em v-for="(actor,index) in getTenActors" v-bind:key="index.id">
+          <div class="castDiv">
+            <p class="cast">Cast:</p>
+            <p class="castName" v-for="(actor,index) in getTenActors" v-bind:key="index.id">
               {{actor.name}}
-              <span v-if="index != getTenActors.length - 1">, </span>
-            </em>
+              <span v-if="index != getTenActors.length - 1">,</span>
+            </p>
           </div>
+        </b-col>
 
           <br>
 
