@@ -345,7 +345,6 @@ export default Vue.extend({
         });
     },
     getImdbVote() {
-      
       axios
         .get(
           "https://api.themoviedb.org/3/find/" +
@@ -367,17 +366,19 @@ export default Vue.extend({
         this.filmReviews.splice(this.filmReviews.indexOf(index), 1);
       else this.filmReviews.push(index);
     },
-    getEnglishTitle(){
+    getEnglishTitle() {
       axios
-      .get("https://api.themoviedb.org/3/movie/"+
-      this.$route.params.id +"/translations?api_key=f8f289dd8d080038f73df4b74df792a6"
-      )
-      .then(response => {
-        this.englishLanguage = response.data.translations
-      })
-      .catch(e => {
-        this.error.push(e);
-      })
+        .get(
+          "https://api.themoviedb.org/3/movie/" +
+            this.$route.params.id +
+            "/translations?api_key=f8f289dd8d080038f73df4b74df792a6"
+        )
+        .then(response => {
+          this.englishLanguage = response.data.translations;
+        })
+        .catch(e => {
+          this.error.push(e);
+        });
     }
   }
 });
