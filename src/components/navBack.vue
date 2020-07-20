@@ -1,6 +1,7 @@
 <template>
-  <button @click="$router.go(-1) 
-    "></button>
+  <router-link to="/">
+    <i class="material-icons xButton">close</i>
+  </router-link>
 </template>
 <script lang="ts">
 import Vue from "vue";
