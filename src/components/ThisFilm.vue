@@ -220,7 +220,7 @@ export default Vue.extend({
       imdbID: "",
       imdbVote: [],
       limit: 10,
-      limitForSimlar: 7,
+      limitForSimlar: 5,
       englishLanguage: []
     };
   },
