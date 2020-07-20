@@ -210,6 +210,7 @@ export default Vue.extend({
     return {
       oneFilm: [],
       imageUrl: "https://image.tmdb.org/t/p/w342",
+      backdropPath: "https://image.tmdb.org/t/p/original",
       trailerVideo: [],
       videoUrl: "https://www.youtube.com/embed/",
       filmCast: [],
