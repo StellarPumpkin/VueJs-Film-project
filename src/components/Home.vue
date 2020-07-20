@@ -129,8 +129,8 @@ export default {
           params: {
             api_key: "f8f289dd8d080038f73df4b74df792a6",
             sort_by: this.sortBy,
-            with_genres: this.selectedGenre.toString(),
-            page: this.currentPage
+            page: this.currentPage,
+            with_genres: this.selectedGenre.toString()
           }
         })
         .then(response => {
