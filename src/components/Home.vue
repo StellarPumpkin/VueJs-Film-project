@@ -99,12 +99,10 @@ export default {
       genreList: [],
       items: [],
       searchedFilm: "",
-      sortBy: "popularity.desc",
-      genreId: "",
-
-      currentPage: this.$route.query.page,
-      total: 1,
-      selectedGenre: []
+      sortingQuery: this.$route.query.sort_by,
+      sortBy: this.$route.query.sort_by || "popularity.desc",
+      currentPage: this.$route.query.page || 1,
+      total: 1
     };
   },
 
