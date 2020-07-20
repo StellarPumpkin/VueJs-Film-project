@@ -1,24 +1,50 @@
 <template>
-  <div class="container-fluid text-secondary">
-    <navBack/>
-    <div class="container text-center">
-      <h1  v-for="englishTitle in getTitleInEnglish"
-      v-bind:key="englishTitle.id">{{englishTitle.data.title || oneFilm.original_title}}({{oneFilm.release_date.slice(0,4)}})</h1>
-      <em>"{{oneFilm.tagline}}"</em>
-    </div>
-    <div class="row">
-      <div class="w-100">
-        <b-embed allowfullscreen type="iframe" aspect="16by9" :src="videoUrl + trailerVideo.key "></b-embed> 
+  <b-container fluid class="wholePage px-0">
+    <navBack class="backButton"/>
+    <b-container fluid class="text-center topSide">
+      <b-row class="backdropContainer">
+        <div
+          class="backdrop"
+          :style="{ backgroundImage: `url(${backdropPath+ oneFilm.backdrop_path})` }"
+        >
+          <div class="trailerButton">
+            <b-button class="playButton" v-b-modal.modal-xl>
+              <i class="far fa-play-circle fa-4x"></i>
+            </b-button>
 
-        <br>
-      </div>
-    </div>
-
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-md-3">
-          <img class="img-fluid" :src="imageUrl + oneFilm.poster_path">
+            <b-modal id="modal-xl" size="xl" centered header-close hide-footer>
+              <b-container fluid class>
+                <b-row class>
+                  <b-embed
+                    allowfullscreen
+                    type="iframe"
+                    aspect="16by9"
+                    :src="videoUrl + trailerVideo.key + '?autoplay=1'"
+                  ></b-embed>
+                </b-row>
+              </b-container>
+            </b-modal>
+          </div>
+          <div class="titleAndTagline">
+            <h1
+              class="originalTitleTop"
+              v-for="englishTitle in getTitleInEnglish"
+              v-bind:key="englishTitle.id"
+            >{{englishTitle.data.title || oneFilm.original_title}}</h1>
+            <p class="tagline">{{oneFilm.tagline}}</p>
+            <p
+              class="genresYearTop"
+              v-for="(thisGenre, index) in oneFilm.genres"
+              v-bind:key="index.id"
+            >
+              {{thisGenre.name}}
+              <span v-if="index !=oneFilm.genres.length - 1">,</span>
+            </p>
+            <span class="genresYearTop">- {{oneFilm.release_date.slice(0,4)}}</span>
+          </div>
         </div>
+      </b-row>
+    </b-container>
 
         <div class="col-md-6">
           <p>{{oneFilm.overview}}</p>
