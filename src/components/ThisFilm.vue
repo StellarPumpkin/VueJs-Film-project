@@ -136,24 +136,32 @@
         </b-col>
       </b-row>
 
-          <div
-            class="row mt-2 mb-2 pt-2 pb-2 justify-content-center border-top border-white"
+      <b-row class="mt-md-5 pt-md-5" align-h="end">
+        <b-col cols="12" order="2" md="8" order-md="1" class="ml-md-2 pt-5 mt-5 pt-md-0 mt-md-0">
+          <h3 class="similarFilmsHeader">You might also like:</h3>
+          <b-row
             v-for="similarFilm in limitSimilarFilms"
             v-bind:key="similarFilm.id"
+            class="p-2 similarFilmsRow"
           >
-            <div class="col-md-4">
-              <img class="img-fluid" :src="imageUrl + similarFilm.poster_path">
-            </div>
-            <div class="col-md-8">
-              <router-link :to="{name:'ThisFilm', params:{id: similarFilm.id}}">
-                <b class="text-info" >{{ similarFilm.original_title}}    </b>
-                
+            <b-col cols="12" md="3">
+              <img
+                class="img-fluid d-inline similarFilmPoster"
+                :src="imageUrl + similarFilm.poster_path"
+              >
+            </b-col>
+            <b-col cols="12" md="9" class="similarFilmTitleDate">
+              <router-link
+                class="similarFilmLink"
+                :to="{name:'ThisFilm', params:{id: similarFilm.id}}"
+              >
+                <p class="similarFilmTitle">{{ similarFilm.original_title}}</p>
               </router-link>
-                  <em>  ({{similarFilm.release_date.slice(0,4)}})</em>
-              <p>{{similarFilm.overview}}</p>
-            </div>
-          </div>
-        </div>
+              <p class="similarFilmDate">({{similarFilm.release_date.slice(0,4)}})</p>
+              <p class="mt-4 similarFilmOverview">{{similarFilm.overview}}</p>
+            </b-col>
+          </b-row>
+        </b-col>
 
         <div class="col-md-3">
           <div>
