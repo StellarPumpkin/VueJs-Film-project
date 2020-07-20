@@ -105,6 +105,18 @@ export default {
       total: 1
     };
   },
+  computed: {
+    selectedGenre() {
+      if (
+        typeof this.$route.query.with_genres === "undefined" ||
+        this.$route.query.with_genres === ""
+      ) {
+        return [];
+      } else {
+        return this.$route.query.with_genres.split(",").map(Number);
+      }
+    }
+  },
 
   created() {
     this.callAPI();
