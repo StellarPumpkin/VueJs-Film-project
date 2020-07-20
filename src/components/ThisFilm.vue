@@ -77,9 +77,64 @@
           </div>
         </b-col>
 
-          <br>
-
-          <h3>You might also like:</h3>
+        <b-col cols="7" order="2" md="3" order-md="3" class="align-self-start">
+          <div class="mainInfoDiv">
+            <div class="imdbDiv">
+              <img class="imdbLogo" src="https://img.icons8.com/color/96/000000/imdb.png">
+              <p class="imdbVote ml-2">{{imdbVote.vote_average}}/10</p>
+            </div>
+            <div class="mt-0">
+              <div class="infoDiv">
+                <p class="infoTitle">Original Title:</p>
+                <p class="infoContent">{{oneFilm.original_title}}</p>
+              </div>
+              <div class="infoDiv">
+                <p class="infoTitle">Release date:</p>
+                <p class="infoContent">{{oneFilm.release_date}}</p>
+              </div>
+              <div class="infoDiv">
+                <p class="infoTitle">Runtime:</p>
+                <p class="infoContent">{{oneFilm.runtime}} minutes</p>
+              </div>
+              <div class="infoDiv">
+                <p class="infoTitle">Budget:</p>
+                <p class="infoContent">${{oneFilm.budget.toLocaleString()}}</p>
+              </div>
+              <div class="infoDiv">
+                <p class="infoTitle">Revenue:</p>
+                <p class="infoContent">${{oneFilm.revenue.toLocaleString()}}</p>
+              </div>
+              <div class="infoDiv">
+                <p class="infoTitle">Genres:</p>
+                <p
+                  class="infoContent"
+                  v-for="(thisGenre, index) in oneFilm.genres"
+                  v-bind:key="index.id"
+                >
+                  {{thisGenre.name}}
+                  <span v-if="index !=oneFilm.genres.length - 1">,</span>
+                </p>
+              </div>
+              <div class="infoDiv">
+                <p class="infoTitle">Languages:</p>
+                <p
+                  class="infoContent"
+                  v-for="(language, index) in oneFilm.spoken_languages"
+                  v-bind:key="index.id"
+                >
+                  {{language.name}}
+                  <span v-if="index !=oneFilm.spoken_languages.length - 1">,</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </b-col>
+      </b-row>
+      <b-row class="mobileBackdropImg">
+        <b-col cols="12">
+          <img class="img-fluid" :src="backdropPath+ oneFilm.backdrop_path">
+        </b-col>
+      </b-row>
 
           <div
             class="row mt-2 mb-2 pt-2 pb-2 justify-content-center border-top border-white"
