@@ -12,6 +12,9 @@
         </div>
       </b-button>
     </router-link>
+    <div class="mobileDisplay">
+      <p class="filmInfo pr-2">{{this.film.original_title}}</p><p class="filmInfo"> ({{film.release_date.slice(0,4)}})</p>
+      </div>
   </div>
 </template>
 
