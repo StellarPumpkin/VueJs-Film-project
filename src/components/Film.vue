@@ -1,7 +1,7 @@
 <template>
   <div class=" col-md-3 p-2">
     <router-link class="routerButton" :to="{name:'ThisFilm', params:{id: film.id}}">
-      <b-button class="popoverButton btn bg-transparent" v-b-popover.hover.rightop="popoverConfig">
+      <b-button class="popoverButton btn bg-transparent p-0 " v-b-popover.hover.rightop="popoverConfig">
         <b-img
           v-if="film.poster_path !== null"
           :src="this.imageUrl + film.poster_path"
@@ -50,10 +50,12 @@ export default Vue.extend({
             this.film.overview +
             "</em>" +
             "<br>" +
+            "<br>"+
             "<b>" +
             "IMDB: " +
             "</b>" +
-            this.film.vote_average
+            this.film.vote_average 
+    
           );
         }
       };
