@@ -1,36 +1,63 @@
 <template>
-  <div class="container-fluid mainContent text-secondary">
-    <div class="row headersRow justify-content-left p-3">
-      <div class="col">
-        <header class="headers">
-          <router-view></router-view>
-          <SearchBar v-model="searchedFilm" v-on:input="searchByName"/>
-        </header>
-      </div>
-    </div>
-    <div class="container-fluid mt-5">
-      <div class="row justify-content-center">
-        <div class="headersRow col-md-2 col-2">
-          <select class="bg-transparent text-white" v-model="sortBy" @change="callAPI(1)">
-            <option value="popularity.desc">Popularity</option>
-            <option value="release_date.desc">Date</option>
-            <option value="revenue.desc">Revenue</option>
-            <option value="vote_count.desc">Vote</option>
-          </select>
-          <p>Select by genre:</p>
-          <genre
-            v-for="genre in genreList"
-            v-bind:key="genre.id"
-            v-bind:id="genre.id"
-            v-bind:name="genre.name"
-            v-on:input="handleCheckbox"
-            v-model="genreId "
-          ></genre>
-        </div>
-        <div class="col-md-10 col-8">
-          <div class="row justify-content-center">
-            <film v-for="film in items" v-bind:key="film.id" v-bind:film="film"></film>
-            <b-pagination-nav :link-gen="linkGen" :number-of-pages="total" use-router></b-pagination-nav>
+  <b-container fluid class="wholePage">
+    <b-row class="navSearch justify-content-md-center pb-3">
+      <SearchBar class="searchBar col-md-3 mt-2" v-model="searchedFilm" v-on:input="searchByName"/>
+    </b-row>
+
+    <b-container fluid="contentContainer mt-5">
+      <b-row class="justify-content-center">
+        <!--DESKTOP-->
+        <nav class="sidebarDesktop col-md-2">
+          <aside class="sidebar-sticky-desktop">
+            <p>Select by:</p>
+            <select class="mb-3" v-model="sortBy" v-on:change="selectSorting()">
+              <option value="popularity.desc">Popularity</option>
+              <option value="release_date.desc">Date</option>
+              <option value="revenue.desc">Revenue</option>
+              <option value="vote_count.desc">Vote</option>
+            </select>
+
+            <p>Select by genre:</p>
+            <genre
+              v-for="genre in genreList"
+              v-bind:key="genre.id"
+              v-bind:id="genre.id"
+              v-bind:selected="selectedGenre"
+              v-bind:name="genre.name"
+              v-on:input="syncGenre"
+            ></genre>
+          </aside>
+        </nav>
+        <!--MOBILE-->
+
+        <b-button class="sidebarMobile sidebarMobileButton" v-b-toggle.sidebar-1>Filters</b-button>
+        <b-sidebar
+          id="sidebar-1"
+          title="Filters"
+          class="sidebarMobile col-md-2"
+          :no-close-on-route-change="true"
+          :noCloseOnBackdrop="true"
+        >
+          <div>
+            <aside class="sidebar-sticky-mobile">
+              <p>Select by:</p>
+              <select class="mb-3" v-model="sortBy" v-on:change="selectSorting()">
+                <option value="popularity.desc">Popularity</option>
+                <option value="release_date.desc">Date</option>
+                <option value="revenue.desc">Revenue</option>
+                <option value="vote_count.desc">Vote</option>
+              </select>
+
+              <p>Select by genre:</p>
+              <genre
+                v-for="genre in genreList"
+                v-bind:key="genre.id"
+                v-bind:id="genre.id"
+                v-bind:selected="selectedGenre"
+                v-bind:name="genre.name"
+                v-on:input="syncGenre"
+              ></genre>
+            </aside>
           </div>
         </div>
       </div>
