@@ -163,51 +163,33 @@
           </b-row>
         </b-col>
 
-        <div class="col-md-3">
-          <div>
-            <div class="text-center">
-              <h3>IMDb</h3>
-              <p>{{imdbVote.vote_average}}/10</p>
-            </div>
-            <b class="text-info">Original Title: </b>
-            <em>{{oneFilm.original_title}}</em>
-            <br>
-            <b class="text-info">Release date:</b>
-            <em>{{oneFilm.release_date}}</em>
-            <br>
-            <b class="text-info">Runtime:</b>
-            <em>{{oneFilm.runtime}} minutes</em>
-            <br>
-            <b class="text-info">Budget:</b>
-            <em>${{oneFilm.budget.toLocaleString()}}</em>
-            <br>
-            <b class="text-info">Revenue:</b>
-            <em>${{oneFilm.revenue.toLocaleString()}}</em>
-            <br>
-            <b class="text-info">Genres:</b>
-            <em v-for="(thisGenre, index) in oneFilm.genres" v-bind:key="index.id">
-              {{thisGenre.name}}
-              <span v-if="index !=oneFilm.genres.length - 1">,</span>
-            </em>
-            <br>
-            <b class="text-info">Languages:</b>
-            <em v-for="(language, index) in oneFilm.spoken_languages" v-bind:key="index.id">
-              {{language.name}}
-              <span v-if="index !=oneFilm.spoken_languages.length - 1">,</span>
-            </em>
-          </div>
-          <div class="filmReviews border-left">
-            <h4>TheMovieDB users' reviews:</h4>
-            <div v-for="(filmReview, index) in filmReviews" v-bind:key="index.id">
-              <b class="text-info" @click="toggleExpansion(index)">{{filmReview.author}}</b>
+        <b-col cols="12" order="1" md="3" order-md="2" class="align-self-start">
+          <b-row class="justify-content-center">
+            <b-col cols md="12 " class="px-md-0 mr-md-0">
+              <div class="reviewMainDiv px-md-0 mr-md-0 mt-0 pt-0">
+                <h4 class="reviewsHeading mt-5">TheMovieDB users reviews:</h4>
 
-              <em v-show="isExpanded(index)"><b class="text-info">:</b> "{{filmReview.content}}"</em>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                <div
+                  class="reviewsDiv p-1"
+                  v-for="(filmReview, index) in filmReviews"
+                  v-bind:key="index.id"
+                >
+                  <label class="reviewName">
+                    <input type="checkbox" class="toggle" @click="toggleExpansion(index)">
+                    {{filmReview.author}}
+                  </label>
+
+                  <div class="reviewContentDiv">
+                    <p class="reviewContent" v-show="isExpanded(index)">{{filmReview.content}}</p>
+                  </div>
+                </div>
+              </div>
+            </b-col>
+          </b-row>
+        </b-col>
+      </b-row>
+    </b-container>
+  </b-container>
 </template>
 
 
