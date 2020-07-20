@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3">
+  <div class=" col-md-3 p-2">
     <router-link class="routerButton" :to="{name:'ThisFilm', params:{id: film.id}}">
       <b-button class="popoverButton btn bg-transparent" v-b-popover.hover.rightop="popoverConfig">
         <b-img
@@ -75,6 +75,21 @@ export default Vue.extend({
 .img-fluid {
   height: auto;
   width: 100%;
+}
+.mobileDisplay{
+  color: white;
+}
+.filmInfo{
+  display:inline;
+  color: rgb(191, 191, 191);
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.9);
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+}
+@media (min-width: 768px){
+  .mobileDisplay{
+    display: none;
+  }
 }
 </style>
 
