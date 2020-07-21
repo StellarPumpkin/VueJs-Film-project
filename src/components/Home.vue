@@ -102,7 +102,8 @@ export default {
       sortingQuery: this.$route.query.sort_by,
       sortBy: this.$route.query.sort_by || "popularity.desc",
       currentPage: this.$route.query.page || 1,
-      total: 1
+      total: 1,
+      apiKey: process.env.VUE_APP_API_KEY
     };
   },
   computed: {
@@ -127,7 +128,7 @@ export default {
       axios
         .get("https://api.themoviedb.org/3/discover/movie", {
           params: {
-            api_key: "f8f289dd8d080038f73df4b74df792a6",
+            api_key: this.apiKey,
             sort_by: this.sortBy,
             page: this.currentPage,
             with_genres: this.selectedGenre.toString()
@@ -144,10 +145,12 @@ export default {
 
     searchByName() {
       axios
-        .get(
-          "https://api.themoviedb.org/3/search/movie?api_key=f8f289dd8d080038f73df4b74df792a6&query=" +
-            this.searchedFilm
-        )
+        .get("https://api.themoviedb.org/3/search/movie?", {
+          params: {
+            api_key: this.apiKey,
+            query: this.searchedFilm
+          }
+        })
         .then(response => {
           this.items = response.data.results;
         })
@@ -157,9 +160,11 @@ export default {
     },
     showGenres() {
       axios
-        .get(
-          "https://api.themoviedb.org/3/genre/movie/list?api_key=f8f289dd8d080038f73df4b74df792a6"
-        )
+        .get("https://api.themoviedb.org/3/genre/movie/list?", {
+          params: {
+            api_key: this.apiKey
+          }
+        })
         .then(response => {
           this.genreList = response.data.genres;
         })

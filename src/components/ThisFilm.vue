@@ -221,7 +221,8 @@ export default Vue.extend({
       imdbVote: [],
       limit: 10,
       limitForSimlar: 5,
-      englishLanguage: []
+      englishLanguage: [],
+      apiKey: process.env.VUE_APP_API_KEY
     };
   },
   watch: {
@@ -262,9 +263,13 @@ export default Vue.extend({
     filmInfo() {
       axios
         .get(
-          "https://api.themoviedb.org/3/movie/" +
-            this.$route.params.id +
-            "?api_key=f8f289dd8d080038f73df4b74df792a6&append_to_response=videos"
+          "https://api.themoviedb.org/3/movie/" + this.$route.params.id + "?",
+          {
+            params: {
+              api_key: this.apiKey,
+              append_to_response: "videos"
+            }
+          }
         )
         .then(response => {
           this.oneFilm = response.data;
@@ -278,7 +283,12 @@ export default Vue.extend({
         .get(
           "https://api.themoviedb.org/3/movie/" +
             this.$route.params.id +
-            "/videos?api_key=f8f289dd8d080038f73df4b74df792a6"
+            "/videos?",
+          {
+            params: {
+              api_key: this.apiKey
+            }
+          }
         )
         .then(response => {
           this.trailerVideo = response.data.results[0];
@@ -292,7 +302,12 @@ export default Vue.extend({
         .get(
           "https://api.themoviedb.org/3/movie/" +
             this.$route.params.id +
-            "/credits?api_key=f8f289dd8d080038f73df4b74df792a6"
+            "/credits?",
+          {
+            params: {
+              api_key: this.apiKey
+            }
+          }
         )
         .then(response => {
           this.filmCast = response.data.cast;
@@ -307,7 +322,13 @@ export default Vue.extend({
         .get(
           "https://api.themoviedb.org/3/movie/" +
             this.$route.params.id +
-            "/reviews?api_key=f8f289dd8d080038f73df4b74df792a6&language=en-US"
+            "/reviews?",
+          {
+            params: {
+              api_key: this.apiKey,
+              language: "en-US"
+            }
+          }
         )
         .then(response => {
           this.filmReviews = response.data.results;
@@ -321,7 +342,13 @@ export default Vue.extend({
         .get(
           "https://api.themoviedb.org/3/movie/" +
             this.$route.params.id +
-            "/similar?api_key=f8f289dd8d080038f73df4b74df792a6&language=en-US"
+            "/similar?",
+          {
+            params: {
+              api_key: this.apiKey,
+              language: "en-US"
+            }
+          }
         )
         .then(response => {
           this.similarFilms = response.data.results;
@@ -335,7 +362,12 @@ export default Vue.extend({
         .get(
           "https://api.themoviedb.org/3/movie/" +
             this.$route.params.id +
-            "external_ids?api_key=f8f289dd8d080038f73df4b74df792a6"
+            "external_ids?",
+          {
+            params: {
+              api_key: this.apiKey
+            }
+          }
         )
         .then(response => {
           this.imdbID = response.data.imdb_id;
@@ -346,11 +378,12 @@ export default Vue.extend({
     },
     getImdbVote() {
       axios
-        .get(
-          "https://api.themoviedb.org/3/find/" +
-            this.imdbID +
-            "?api_key=f8f289dd8d080038f73df4b74df792a6&external_source=imdb_id"
-        )
+        .get("https://api.themoviedb.org/3/find/" + this.imdbID + "?", {
+          params: {
+            api_key: this.apiKey,
+            external_source: "imdb_id"
+          }
+        })
         .then(response => {
           this.imdbVote = response.data.movie_results[0];
         })
@@ -371,7 +404,12 @@ export default Vue.extend({
         .get(
           "https://api.themoviedb.org/3/movie/" +
             this.$route.params.id +
-            "/translations?api_key=f8f289dd8d080038f73df4b74df792a6"
+            "/translations?",
+          {
+            params: {
+              api_key: this.apiKey
+            }
+          }
         )
         .then(response => {
           this.englishLanguage = response.data.translations;
